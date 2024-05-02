@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { createUser, getUsers } from "../DatabaseCommands";
+import { createUser, getUsers, getUser } from "../DatabaseCommands";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,12 +14,17 @@ export default function Login() {
     });
 
   const login = (_name: string, _password: string) => {
-    users.forEach((user) => {
-      if (user.name == _name && user.password == _password) {
-        navigate("/home", { state: { name: _name, id: user.id } });
-      }
-    });
-    throwError("Neplatné jméno nebo heslo.");
+    getUser(_name, _password)
+      .then((_users) => {
+        if (_users.length != 0)
+          navigate("/home", {
+            state: { name: _users[0].name, id: _users[0].id },
+          });
+        else throwError("Neplatné jméno nebo heslo.");
+      })
+      .catch((error) => {
+        console.error("Failed to fetch users:", error);
+      });
   };
 
   const register = (_name: string, _password: string) => {

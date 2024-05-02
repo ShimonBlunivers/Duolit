@@ -8,8 +8,29 @@
   color: red;
 }
 
-.menuContainer {
-  margin-top: 100px;
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 10;
+}
+
+.bookList {
+  height: 600px;
+  overflow-x: visible;
+  overflow-y: scroll;
+  font-size: x-large;
+  text-align: left;
+}
+
+.bookListItem {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 p {

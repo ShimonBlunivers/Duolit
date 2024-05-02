@@ -5,7 +5,7 @@ export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (location.state.name == undefined) navigate("/home");
+  if (location.state.name == undefined) navigate("/login");
 
   return (
     <>
